@@ -17,6 +17,13 @@ export const TrelloList = () => {
                   </Styles.Card>
                 )}
               </Draggable>
+              <Draggable draggableId="2st" index={1}>
+                {(c) => (
+                  <Styles.Card ref={c.innerRef} {...c.dragHandleProps} {...c.draggableProps}>
+                    테스트2
+                  </Styles.Card>
+                )}
+              </Draggable>
             </Styles.Board>
           )}
         </Droppable>

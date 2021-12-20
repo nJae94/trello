@@ -8,10 +8,10 @@ export const Main = styled.main`
   margin-top: 50px;
 `;
 
-export const Board = styled.div`
+export const Board = styled.ul`
   background-color: ${boardColor};
 `;
 
-export const Card = styled.div`
+export const Card = styled.li`
   background-color: white;
 `;
