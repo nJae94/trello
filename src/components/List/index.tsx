@@ -9,7 +9,7 @@ export const TrelloList = () => {
       <div>
         <Droppable droppableId="test">
           {(b) => (
-            <Styles.Board ref={b.innerRef} {...b.droppableProps}>
+            <Styles.BoardWrapper ref={b.innerRef} {...b.droppableProps}>
               <Draggable draggableId="1st" index={0}>
                 {(c) => (
                   <Styles.Card ref={c.innerRef} {...c.dragHandleProps} {...c.draggableProps}>
@@ -17,14 +17,8 @@ export const TrelloList = () => {
                   </Styles.Card>
                 )}
               </Draggable>
-              <Draggable draggableId="2st" index={1}>
-                {(c) => (
-                  <Styles.Card ref={c.innerRef} {...c.dragHandleProps} {...c.draggableProps}>
-                    테스트2
-                  </Styles.Card>
-                )}
-              </Draggable>
-            </Styles.Board>
+              {b.placeholder}
+            </Styles.BoardWrapper>
           )}
         </Droppable>
       </div>

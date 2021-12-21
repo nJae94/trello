@@ -22,6 +22,10 @@ export const ResetStyles = css`
     -ms-overflow-style: none;
     font-size: inherit;
   }
+
+  #root {
+    height: 100vh;
+  }
 `;
 
 const GlobalStyles = () => (
