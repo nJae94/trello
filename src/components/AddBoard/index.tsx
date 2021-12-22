@@ -1,4 +1,6 @@
 import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
+import { boardState } from '../../atom/Board';
 import { BasicButton } from '../common/Button';
 import * as Styles from './styles';
 
@@ -7,8 +9,21 @@ interface FormMoel {
 }
 
 const AddBoard = () => {
-  const { register, handleSubmit } = useForm<FormMoel>();
-  const onSubmit = () => {};
+  const [board, setBoard] = useRecoilState(boardState);
+  const { register, handleSubmit, setValue } = useForm<FormMoel>();
+  const onSubmit = (data: FormMoel) => {
+    const { title } = data;
+    if (!title) {
+      return;
+    }
+
+    if (Object.keys(board).includes(title)) {
+      return;
+    }
+
+    setBoard((prev) => ({ ...prev, [title]: [] }));
+    setValue('title', '');
+  };
 
   return (
     <Styles.Wrapper>
