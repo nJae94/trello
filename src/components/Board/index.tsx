@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
@@ -50,8 +50,8 @@ const Board = ({ title, index }: BoardProps) => {
           <Droppable direction="vertical" droppableId={title} type="card">
             {(provider) => (
               <Styles.Content ref={provider.innerRef} {...provider.droppableProps}>
-                {board[title].map((item) => {
-                  return <Card key={index} board={item} index={index} />;
+                {board[title].map((item, i) => {
+                  return <Card key={index} board={item} index={i} />;
                 })}
                 <li>{provider.placeholder}</li>
               </Styles.Content>
@@ -59,14 +59,16 @@ const Board = ({ title, index }: BoardProps) => {
           </Droppable>
           {isOpen ? (
             <Styles.Form onSubmit={handleSubmit(onSubmit)}>
-              <textarea placeholder="입력" {...register('content')} />
+              <Styles.TextArea placeholder="입력" {...register('content')} />
               <Styles.ButtonWap>
-                <button>추가</button>
-                <button>취소</button>
+                <Styles.Button>추가</Styles.Button>
+                <Styles.CancleButton onClick={onClickOpen}>취소</Styles.CancleButton>
               </Styles.ButtonWap>
             </Styles.Form>
           ) : (
-            <button onClick={onClickOpen}>글쓰기</button>
+            <Styles.ButtonWap>
+              <Styles.Button onClick={onClickOpen}>글쓰기</Styles.Button>
+            </Styles.ButtonWap>
           )}
         </Styles.Wrapper>
       )}
@@ -74,4 +76,4 @@ const Board = ({ title, index }: BoardProps) => {
   );
 };
 
-export default Board;
+export default memo(Board);

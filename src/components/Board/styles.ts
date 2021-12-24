@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { boardColor } from '../../styles/colors';
+import { BasicButton } from '../common/Button';
 
 export const Wrapper = styled.div`
   width: 300px;
@@ -35,4 +36,25 @@ export const ButtonWap = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 10px;
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+`;
+
+export const Button = styled(BasicButton)`
+  &:hover {
+    background: rgba(92, 93, 94, 0.1);
+    cursor: pointer;
+  }
+`;
+
+export const CancleButton = styled(BasicButton)`
+  background-color: #e41566;
+  color: white;
+  margin-left: 10px;
 `;

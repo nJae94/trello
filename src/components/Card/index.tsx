@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { memo } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { BoardAtom } from '../../atom/Board';
 
@@ -21,7 +22,7 @@ const Card = ({ index, board }: CardProps) => {
   );
 };
 
-export default Card;
+export default memo(Card);
 
 const Wrapper = styled.div`
   width: 100%;
