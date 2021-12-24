@@ -18,10 +18,38 @@ export const TrelloList = () => {
     if (type === 'board') {
       setBoard((prev) => {
         const newBoard = Object.entries(prev);
-        console.log(newBoard);
+        console.log(newBoard, source);
+        const [temp] = newBoard.splice(source.index, 1);
+        newBoard.splice(destination.index, 0, temp);
 
-        return prev;
+        return newBoard.reduce(
+          (acc, [key, value]) => ({
+            ...acc,
+            [key]: value,
+          }),
+          {},
+        );
       });
+    } else if (type === 'card') {
+      if (source.droppableId === destination.droppableId) {
+        const newBoard = [...board[source.droppableId]];
+        const [temp] = newBoard.splice(source.index, 1);
+        newBoard.splice(destination.index, 0, temp);
+
+        setBoard((prev) => ({ ...prev, [source.droppableId]: newBoard }));
+
+        return;
+      }
+      const start = [...board[source.droppableId]];
+      const end = [...board[destination.droppableId]];
+      const [temp] = start.splice(source.index, 1);
+      end.splice(destination.index, 0, temp);
+
+      setBoard((prev) => ({
+        ...prev,
+        [source.droppableId]: start,
+        [destination.droppableId]: end,
+      }));
     }
   };
 

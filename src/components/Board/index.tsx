@@ -51,7 +51,7 @@ const Board = ({ title, index }: BoardProps) => {
             {(provider) => (
               <Styles.Content ref={provider.innerRef} {...provider.droppableProps}>
                 {board[title].map((item, i) => {
-                  return <Card key={index} board={item} index={i} />;
+                  return <Card key={i} board={item} index={i} />;
                 })}
                 <li>{provider.placeholder}</li>
               </Styles.Content>
