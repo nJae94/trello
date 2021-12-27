@@ -27,7 +27,7 @@ export default memo(Card);
 const Wrapper = styled.div`
   width: 100%;
   background-color: gray;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   padding: 10px;
   border-radius: 4px;
   font-size: 14px;

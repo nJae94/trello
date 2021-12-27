@@ -18,7 +18,7 @@ export const TrelloList = () => {
     if (type === 'board') {
       setBoard((prev) => {
         const newBoard = Object.entries(prev);
-        console.log(newBoard, source);
+
         const [temp] = newBoard.splice(source.index, 1);
         newBoard.splice(destination.index, 0, temp);
 
