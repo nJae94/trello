@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { boardColor } from '../../styles/colors';
 import { BasicButton } from '../common/Button';
@@ -16,14 +17,16 @@ export const Title = styled.h2`
   font-weight: bold;
 `;
 
-export const Content = styled.ul`
-  min-height: 5px;
-  li {
-    background-color: #636e72;
-    border-radius: 5px;
-    list-style: none;
-  }
-`;
+export const Content = styled.ul(
+  ({ isDragging }: { isDragging: boolean }) => css`
+    min-height: 5px;
+    li {
+      background-color: ${isDragging ? '#E41566' : '#636e72'};
+      border-radius: 5px;
+      list-style: none;
+    }
+  `,
+);
 
 export const Form = styled.form`
   display: flex;

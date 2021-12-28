@@ -48,10 +48,10 @@ const Board = ({ title, index }: BoardProps) => {
         <Styles.Wrapper ref={b.innerRef} {...b.dragHandleProps} {...b.draggableProps}>
           <Styles.Title>{title}</Styles.Title>
           <Droppable direction="vertical" droppableId={title} type="card">
-            {(provider) => (
-              <Styles.Content ref={provider.innerRef} {...provider.droppableProps}>
+            {(provider, snapshot) => (
+              <Styles.Content ref={provider.innerRef} {...provider.droppableProps} isDragging={snapshot.isDraggingOver}>
                 {board[title].map((item, i) => {
-                  return <Card key={i} board={item} index={i} />;
+                  return <Card key={i} card={item} index={i} />;
                 })}
                 <li>{provider.placeholder}</li>
               </Styles.Content>
