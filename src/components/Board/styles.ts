@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   width: 300px;
   background-color: ${boardColor};
   border-radius: 5px;
-  margin-right: 20px;
+  margin: 0 20px 40px 0;
   min-height: min-content;
 `;
 

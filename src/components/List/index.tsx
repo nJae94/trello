@@ -3,18 +3,28 @@ import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { addBoard, boardState } from '../../atom/Board';
 import Board from '../Board';
+import Trash from '../Trash';
 import * as Styles from './styles';
 
 export const TrelloList = () => {
   const [board, setBoard] = useRecoilState(boardState);
 
   const onDragEnd = (result: DropResult) => {
-    const { source, destination, type } = result;
+    const { source, destination, type, draggableId } = result;
 
     if (!destination || !source) {
       return;
     }
 
+    if (destination.droppableId === 'trash') {
+      setBoard((prev) => {
+        const newBoard = { ...prev };
+        delete newBoard[draggableId];
+
+        return newBoard;
+      });
+      return;
+    }
     if (type === 'board') {
       setBoard((prev) => {
         const newBoard = Object.entries(prev);
@@ -30,7 +40,9 @@ export const TrelloList = () => {
           {},
         );
       });
-    } else if (type === 'card') {
+      return;
+    }
+    if (type === 'card') {
       if (source.droppableId === destination.droppableId) {
         const newBoard = [...board[source.droppableId]];
         const [temp] = newBoard.splice(source.index, 1);
@@ -69,6 +81,7 @@ export const TrelloList = () => {
           </Styles.BoardWrapper>
         )}
       </Droppable>
+      <Trash />
     </DragDropContext>
   );
 };
