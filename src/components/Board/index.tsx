@@ -9,13 +9,14 @@ import * as Styles from './styles';
 interface BoardProps {
   title: string;
   index: number;
+  isDragging: boolean;
 }
 
 interface FormData {
   content: string;
 }
 
-const Board = ({ title, index }: BoardProps) => {
+const Board = ({ title, index, isDragging }: BoardProps) => {
   const [board, setBoard] = useRecoilState(boardState);
   const [isOpen, setIsOpen] = useState(false);
   const { register, handleSubmit, setValue } = useForm<FormData>();
@@ -45,7 +46,7 @@ const Board = ({ title, index }: BoardProps) => {
   return (
     <Draggable key={title} draggableId={title} index={index}>
       {(b) => (
-        <Styles.Wrapper ref={b.innerRef} {...b.dragHandleProps} {...b.draggableProps}>
+        <Styles.Wrapper ref={b.innerRef} {...b.dragHandleProps} {...b.draggableProps} isDragging={isDragging}>
           <Styles.Title>{title}</Styles.Title>
           <Droppable direction="vertical" droppableId={title} type="card">
             {(provider, snapshot) => (

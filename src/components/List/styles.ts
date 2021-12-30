@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const BoardWrapper = styled.ul`
+export const BoardWrapper = styled.div`
   width: min-content;
   display: flex;
   width: 100%;

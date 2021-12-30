@@ -3,13 +3,15 @@ import styled from '@emotion/styled';
 import { boardColor } from '../../styles/colors';
 import { BasicButton } from '../common/Button';
 
-export const Wrapper = styled.div`
-  width: 300px;
-  background-color: ${boardColor};
-  border-radius: 5px;
-  margin: 0 20px 40px 0;
-  min-height: min-content;
-`;
+export const Wrapper = styled.div(
+  ({ isDragging }: { isDragging: boolean }) => css`
+    width: 300px;
+    height: min-content;
+    background-color: ${isDragging ? '#E41566' : boardColor};
+    border-radius: 5px;
+    margin: 0 20px 40px 0;
+  `,
+);
 
 export const Title = styled.h2`
   padding: 5px;

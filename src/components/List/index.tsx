@@ -72,10 +72,10 @@ export const TrelloList = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="board">
-        {(b) => (
+        {(b, snapshot) => (
           <Styles.BoardWrapper ref={b.innerRef} {...b.droppableProps}>
             {Object.keys(board).map((item, index) => {
-              return <Board title={item} index={index} key={index} />;
+              return <Board title={item} index={index} key={index} isDragging={snapshot.isDraggingOver} />;
             })}
             {b.placeholder}
           </Styles.BoardWrapper>
